@@ -2,9 +2,10 @@ const blog = require('../data/blog')
 
 function index(req, res) {
     let filteredBlog = blog
-    if(req.query.slug){
+    if(req.query.tags){
         console.log('Filter the result');
-        filteredBlog = blog.filter(post => post.slug.includes(req.query.slug))
+        filteredBlog = blog.filter(post => post.tags.includes(req.query.tags))
+        console.log(filteredBlog);
     }
     res.json(filteredBlog)
 }
