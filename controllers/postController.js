@@ -1,3 +1,5 @@
+const blog = require('../data/blog')
+
 function index(req, res) {
     res.send(`Return all posts`)
 }
