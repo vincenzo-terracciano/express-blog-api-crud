@@ -29,7 +29,19 @@ function modify(req, res) {
 }
 
 function destroy(req, res) {
-    res.send(`Delete the post with slug: ${req.params.slug}`)
+    const postSlug = req.params.slug
+    const post = blog.find(post => post.slug === postSlug)
+
+    if(!post){
+        return res.status(404).json({
+            error: '404',
+            message: 'Post not found'
+        })
+    }
+    blog.splice(blog.indexOf(post), 1)
+    console.log(blog);    
+
+    res.sendStatus(204)
 }
 
 module.exports = {
