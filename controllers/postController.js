@@ -2,7 +2,6 @@ const blog = require('../data/blog')
 
 function index(req, res) {
     let filteredBlog = blog
-    console.log(req);
     if(req.query.slug){
         console.log('Filter the result');
         filteredBlog = blog.filter(post => post.slug.includes(req.query.slug))
@@ -11,7 +10,10 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    res.send(`Show the post with slug: ${req.params.slug}`)
+    const postSlug = req.params.slug
+    const post = blog.find(post => post.slug === postSlug)
+    console.log(post);
+    res.json(post)
 }
 
 function store(req, res) {
