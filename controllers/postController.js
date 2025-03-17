@@ -25,11 +25,25 @@ function show(req, res) {
 }
 
 function store(req, res) {
-    res.send(`Store new post`)
+    console.log(req.body);
+    
+    const newPost = {
+        title: "Torta al cioccolato fondente",
+        slug: "torta-al-cioccolato-fondente",
+        content: "La torta al cioccolato fondente è un dessert ricco e irresistibile, perfetto per ogni occasione speciale. Realizzata con ingredienti di alta qualità come il cioccolato fondente, uova fresche e burro, questa torta si caratterizza per la sua consistenza morbida e il suo sapore intenso. Un vero e proprio peccato di gola per gli amanti del cioccolato.",
+        image: "torta-al-cioccolato.jpg",
+        tags: ["cioccolato", "dolci", "dessert", "torta", "fondente"]
+      }
+
+      blog.push(newPost);
+      console.log(blog);
+
+      res.status(201);
+      res.json(newPost)
 }
 
 function update(req, res) {
-    res.send(`Update the post with slug: ${req.params.slug}`)
+   
 }
 
 function modify(req, res) {
