@@ -57,7 +57,7 @@ function update(req, res) {
     }
     
     post.title = req.body.title;
-    post.slug = req.body.slug;
+    post.slug = req.body.title.toLowerCase().split(" ").join("-");
     post.content = req.body.content;
     post.image = req.body.image;
     post.tags = req.body.tags;
@@ -68,7 +68,23 @@ function update(req, res) {
 }
 
 function modify(req, res) {
-    res.send(`Modify the post whith slug: ${req.params.slug}`)
+    const postSlug = req.params.slug
+    const post = blog.find(post => post.slug === postSlug)
+    console.log(post);
+
+    if(!post) {
+        return res.status(404).json({
+            error: '404',
+            message: 'Post not found'
+        })
+    }
+
+    post.title = req.body.title;
+    post.slug = req.body.title.toLowerCase().split(" ").join("-");
+
+    console.log(blog);
+    
+    res.json(post)
 }
 
 function destroy(req, res) {
