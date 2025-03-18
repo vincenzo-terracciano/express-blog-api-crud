@@ -6,6 +6,8 @@ const postsRouter = require('./routers/posts')
 
 const serverError = require('./middlewares/serverError')
 
+const error_404 = require('./middlewares/error_404')
+
 app.use(express.json());
 
 /* listening */
@@ -22,3 +24,5 @@ app.get('/', (req, res) => {
 app.use('/api/v1/posts', postsRouter)
 
 app.use(serverError)
+
+app.use(error_404)
